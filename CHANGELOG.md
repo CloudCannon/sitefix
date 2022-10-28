@@ -9,6 +9,8 @@
 
 ## Unreleased
 
+## v0.1.1 (October 28, 2022)
+
 * Release wrapper through CI to wire up binary checksum
 
 ## v0.1.0 (October 28, 2022)
