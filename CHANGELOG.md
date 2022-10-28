@@ -9,6 +9,4 @@
 
 ## Unreleased
 
-## v0.1.0 (October 28, 2022)
-
 * Initial release of the sitefix core
