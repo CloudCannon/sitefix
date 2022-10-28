@@ -8,3 +8,5 @@
 -->
 
 ## Unreleased
+
+* Initial release of the sitefix core
