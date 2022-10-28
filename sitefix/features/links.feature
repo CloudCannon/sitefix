@@ -22,3 +22,11 @@ Feature: Link Tests
             """
         When I run my program
         Then I should see "* public/index.html: Dead Link: <a> links to /beets/, but that page does not exist" in stderr
+
+    Scenario: Sitefix doesn't call out external links
+        Given I have a "public/index.html" file with the body:
+            """
+            <a href="https://beets.com">Beets</a>
+            """
+        When I run my program
+        Then I should see "All ok!" in stdout
