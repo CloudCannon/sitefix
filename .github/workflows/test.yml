@@ -41,23 +41,15 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            ~/.rustup
-            target
-          key: ${{ runner.os }}-${{ matrix.rust }}
+      - name: Install Rust
+        run: |
+          rustup toolchain install ${{ matrix.rust }} --profile minimal
+
+      - uses: Swatinem/rust-cache@v2
 
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Install Rust
-        run: |
-          rustup install ${{ matrix.rust }}
 
       - name: Install Chrome
         uses: browser-actions/setup-chrome@latest
