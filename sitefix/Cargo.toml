@@ -1,0 +1,32 @@
+[package]
+name = "sitefix"
+version = "0.0.0"
+edition = "2021"
+include = ["/src", "/features", "/tests"]
+description = "QA and fix issues on static websites."
+license = "MIT"
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "3.2.6", features = ["derive"] }
+console = "0.15.1"
+wax = "0.5.0"
+futures = "0.3"
+hashbrown = "0.12.0"
+tokio = { version = "1", features = [
+    "rt-multi-thread",
+    "fs",
+    "time",
+    "macros",
+    "io-util",
+] }
+regex = "1.1"
+lol_html = "0.3"
+lazy_static = "1.4.0"
+twelf = { version = "0.7", default-features = false, features = [
+    "env",
+    "clap",
+    "json",
+    "yaml",
+    "toml",
+] }

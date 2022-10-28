@@ -1,0 +1,36 @@
+{
+  "name": "sitefix",
+  "version": "0.0.0",
+  "description": "QA and fix issues on static websites.",
+  "bin": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CloudCannon/sitefix"
+  },
+  "scripts": {
+    "postinstall": "node ./lib/postinstall.js"
+  },
+  "author": "CloudCannon",
+  "license": "MIT",
+  "dependencies": {
+    "https-proxy-agent": "^5.0.0",
+    "proxy-from-env": "^1.1.0"
+  },
+  "overrides": {
+    "agent-base": "^6.0.2"
+  },
+  "keywords": [
+    "CloudCannon",
+    "Cloud",
+    "Cannon",
+    "jamstack",
+    "static",
+    "sitefix",
+    "proof",
+    "qa"
+  ],
+  "bugs": {
+    "url": "https://github.com/CloudCannon/sitefix/issues"
+  },
+  "homepage": "https://github.com/CloudCannon/sitefix#readme"
+}
