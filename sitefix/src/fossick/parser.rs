@@ -105,7 +105,9 @@ impl<'a> DomParser<'a> {
                         if PAGE_LINK_SELECTORS.contains(&tag_name.as_str()) {
                             match el.get_attribute("href") {
                                 Some(url) => {
-                                    if !EXTERNAL_URL.is_match(&url) && !globals.urls.contains(&url) {
+                                    if url.starts_with('#') {
+                                        // TODO: add page-level test category
+                                    } else if !EXTERNAL_URL.is_match(&url) && !globals.urls.contains(&url) {
                                         issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {url}, but that page does not exist")))
                                     }
                                 },
