@@ -119,7 +119,7 @@ impl FixState {
         if issues.is_empty() {
             log.info("All ok!");
         } else {
-            log.error(format!("{} issues{}:", issues.len(), plural!(issues.len())));
+            log.error(format!("{} issue{}:", issues.len(), plural!(issues.len())));
 
             for issue in issues {
                 log.error(issue);

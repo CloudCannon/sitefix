@@ -9,6 +9,8 @@
 
 ## Unreleased
 
+* Defer handling of hash segments on internal links
+
 ## v0.1.2 (October 30, 2022)
 
 * Skip hash links for now

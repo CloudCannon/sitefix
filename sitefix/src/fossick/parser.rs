@@ -107,8 +107,19 @@ impl<'a> DomParser<'a> {
                                 Some(url) => {
                                     if url.starts_with('#') {
                                         // TODO: add page-level test category
-                                    } else if !EXTERNAL_URL.is_match(&url) && !globals.urls.contains(&url) {
-                                        issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {url}, but that page does not exist")))
+                                    } else if EXTERNAL_URL.is_match(&url) {
+                                        // TODO: add external test category
+                                    } else {
+                                        if let Some((main_url, _hash)) = url.split_once('#') {
+                                            if !globals.urls.contains(&main_url.to_string()) {
+                                                issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {url}, but that page does not exist")))
+                                            }
+                                            // TODO: Add site-level hash tester
+                                        } else {
+                                            if !globals.urls.contains(&url) {
+                                                issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {url}, but that page does not exist")))
+                                            }
+                                        }
                                     }
                                 },
                                 None => issues.push(SitefixIssue::MissingLink(format!("<{tag_name}> has no href"))),

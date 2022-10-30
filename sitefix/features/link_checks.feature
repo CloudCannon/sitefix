@@ -6,12 +6,13 @@ Feature: Link Tests
     Scenario: Sitefix accepts valid links
         Given I have a "public/beets/index.html" file with the body:
             """
-            <p>Beets!</p>
+            <p id="other-beets">Beets!</p>
             """
         Given I have a "public/index.html" file with the body:
             """
             <a href="#beets">Beets</a>
             <a href="/beets/">Beets</a>
+            <a href="/beets/#other-beets">Beets</a>
             <a id="beets" href="https://beets.com">Beets</a>
             """
         When I run my program
