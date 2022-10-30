@@ -10,8 +10,7 @@ use crate::Globals;
 use crate::SitefixIssue;
 
 lazy_static! {
-    static ref ATTRIBUTE_MATCH: Regex =
-        Regex::new("^\\s*(?P<name>[^:\\[\\]]+)\\[(?P<attribute>.+)\\]\\s*$").unwrap();
+    static ref EXTERNAL_URL: Regex = Regex::new("^(https?:)?//").unwrap();
 }
 lazy_static! {
     static ref PAGE_LINK_SELECTORS: Vec<&'static str> = vec!("a");
@@ -106,7 +105,9 @@ impl<'a> DomParser<'a> {
                         if PAGE_LINK_SELECTORS.contains(&tag_name.as_str()) {
                             match el.get_attribute("href") {
                                 Some(url) => {
-                                    if !globals.urls.contains(&url) {
+                                    if url.starts_with('#') {
+                                        // TODO: add page-level test category
+                                    } else if !EXTERNAL_URL.is_match(&url) && !globals.urls.contains(&url) {
                                         issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {url}, but that page does not exist")))
                                     }
                                 },
