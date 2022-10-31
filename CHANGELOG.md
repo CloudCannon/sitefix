@@ -9,6 +9,10 @@
 
 ## Unreleased
 
+## v0.1.4 (October 31, 2022)
+
+* Return an error code if a site fails the test
+
 ## v0.1.3 (October 30, 2022)
 
 * Defer handling of hash segments on internal links

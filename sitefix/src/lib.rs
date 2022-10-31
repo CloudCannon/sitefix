@@ -124,6 +124,8 @@ impl FixState {
             for issue in issues {
                 log.error(issue);
             }
+
+            std::process::exit(1);
         }
     }
 }
