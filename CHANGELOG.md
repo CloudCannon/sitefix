@@ -9,6 +9,8 @@
 
 ## Unreleased
 
+## v0.1.5 (October 31, 2022)
+
 * Handle URL encoded links
 
 ## v0.1.4 (October 31, 2022)
