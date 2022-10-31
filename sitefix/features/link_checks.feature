@@ -18,6 +18,18 @@ Feature: Link Tests
         When I run my program
         Then I should see "All ok!" in stdout
 
+    Scenario: Sitefix accepts valid encoded links
+        Given I have a "public/kākāpō/index.html" file with the body:
+            """
+            <p>Up to 64 cm (25 in) in length, these flightless birds have finely blotched yellow-green plumage.</p>
+            """
+        Given I have a "public/index.html" file with the body:
+            """
+            <a href="/k%C4%81k%C4%81p%C5%8D/">Kākāpō</a>
+            """
+        When I run my program
+        Then I should see "All ok!" in stdout
+
     Scenario: Sitefix calls out broken internal links
         Given I have a "public/index.html" file with the body:
             """

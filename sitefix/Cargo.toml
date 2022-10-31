@@ -30,3 +30,4 @@ twelf = { version = "0.7", default-features = false, features = [
     "yaml",
     "toml",
 ] }
+urlencoding = "2"
