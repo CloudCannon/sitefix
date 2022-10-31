@@ -4,6 +4,7 @@ use regex::Regex;
 use std::cell::RefCell;
 use std::default::Default;
 use std::rc::Rc;
+use urlencoding::decode;
 
 use crate::FixOptions;
 use crate::Globals;
@@ -105,19 +106,20 @@ impl<'a> DomParser<'a> {
                         if PAGE_LINK_SELECTORS.contains(&tag_name.as_str()) {
                             match el.get_attribute("href") {
                                 Some(url) => {
-                                    if url.starts_with('#') {
+                                    let decoded_url = decode(&url).expect("UTF-8");
+                                    if decoded_url.starts_with('#') {
                                         // TODO: add page-level test category
-                                    } else if EXTERNAL_URL.is_match(&url) {
+                                    } else if EXTERNAL_URL.is_match(&decoded_url) {
                                         // TODO: add external test category
                                     } else {
-                                        if let Some((main_url, _hash)) = url.split_once('#') {
+                                        if let Some((main_url, _hash)) = decoded_url.split_once('#') {
                                             if !globals.urls.contains(&main_url.to_string()) {
-                                                issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {url}, but that page does not exist")))
+                                                issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {decoded_url}, but that page does not exist")))
                                             }
                                             // TODO: Add site-level hash tester
                                         } else {
-                                            if !globals.urls.contains(&url) {
-                                                issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {url}, but that page does not exist")))
+                                            if !globals.urls.contains(&decoded_url.to_string()) {
+                                                issues.push(SitefixIssue::DeadLink(format!("<{tag_name}> links to {decoded_url}, but that page does not exist")))
                                             }
                                         }
                                     }
