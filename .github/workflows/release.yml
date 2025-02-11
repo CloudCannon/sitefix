@@ -14,7 +14,7 @@ env:
 jobs:
   publish-crate:
     name: Publish Crate
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: publish-github-release
     steps:
       - name: Clone
@@ -43,7 +43,7 @@ jobs:
           git checkout -b deploy_branch
       - name: Prepare Crates
         run: |
-          # Update cargo version, 
+          # Update cargo version,
           node ./.backstage/version.cjs
           git add ./sitefix/Cargo.toml
           # Commit changes so cargo doesn't complain about dirty repo
@@ -59,7 +59,7 @@ jobs:
 
   publish-npm-package:
     name: Publish NPM package
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: publish-github-release
     defaults:
       run:
@@ -82,7 +82,7 @@ jobs:
 
   publish-github-release:
     name: Publish to GitHub
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: test-and-build
     defaults:
       run:
@@ -251,7 +251,7 @@ jobs:
           git checkout -b deploy_branch
       - name: Prepare Crates
         run: |
-          # Update cargo version, 
+          # Update cargo version,
           node ./.backstage/version.cjs
           git add ./sitefix/Cargo.toml
           # Commit changes so cargo doesn't complain about dirty repo
